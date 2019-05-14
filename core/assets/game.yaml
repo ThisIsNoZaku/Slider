@@ -1,0 +1,5 @@
+resources:
+  food:
+    id: 1
+    label: Food
+    type: int
