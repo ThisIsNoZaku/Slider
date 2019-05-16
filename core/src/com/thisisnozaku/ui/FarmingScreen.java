@@ -39,5 +39,19 @@ public class FarmingScreen implements UiComponentConfigurer {
         });
 
         rootTable.add(uiTable);
+        rootTable.row();
+
+        Table gameplayTable = new Table();
+
+        for(int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                Button b = new Button(skin);
+                gameplayTable.add(b).pad(15).size(65);
+            }
+            gameplayTable.row();
+        }
+
+        rootTable.add(gameplayTable).expandY();
+
     }
 }
