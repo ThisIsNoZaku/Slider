@@ -2,4 +2,9 @@ resources:
   food:
     id: 1
     label: Food
-    type: int
+  tools:
+    id: 2
+    label: Tools
+  weapons:
+    id: 3
+    label: Weapon

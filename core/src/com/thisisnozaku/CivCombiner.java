@@ -5,16 +5,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.deser.AbstractDeserializer;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.kotcrab.vis.ui.VisUI;
 import com.thisisnozaku.resources.ResourceDefinition;
@@ -23,7 +22,6 @@ import com.thisisnozaku.resources.ResourceStateBuilder;
 import com.thisisnozaku.ui.FarmingScreen;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -54,19 +52,9 @@ public class CivCombiner extends ApplicationAdapter {
 			throw new IllegalStateException(e);
 		}
 		farmingScreen = new FarmingScreen(skin);
-	    stage = new Stage();
-		stage.setDebugAll(true);
+	    stage = configureRootState(new Stage());
 	    farmingScreen.configure(stage, gameState);
-//		Texture texture = new Texture(Gdx.files.internal("1280px-Akita_Inu_dog.jpg"));
-//		Image image = new Image(texture);
-//		stage.addActor(image);
-//		image.setPosition(0,0, Align.bottomLeft );
 		Gdx.input.setInputProcessor(stage);
-
-		Viewport viewport = new FitViewport(800, 640, camera);
-
-		stage.setViewport(viewport);
-		stage.getViewport().update(800, 640);
 	}
 
 	@Override
@@ -81,5 +69,14 @@ public class CivCombiner extends ApplicationAdapter {
 	public void dispose () {
 		stage.dispose();
 		VisUI.dispose();
+	}
+
+	public Stage configureRootState(Stage stage) {
+		Table table = new Table();
+		table.setFillParent(true);
+		stage.addActor(table);
+		table.top();
+		stage.setDebugAll(true);
+		return stage;
 	}
 }

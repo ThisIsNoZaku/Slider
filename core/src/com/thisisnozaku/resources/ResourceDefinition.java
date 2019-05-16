@@ -1,10 +1,14 @@
 package com.thisisnozaku.resources;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ResourceDefinition {
     private long id;
     private String displayName;
 
-    public ResourceDefinition(long id, String displayName) {
+    @JsonCreator
+    public ResourceDefinition(@JsonProperty("id") long id, @JsonProperty("label")String displayName) {
         this.id = id;
         this.displayName = displayName;
     }

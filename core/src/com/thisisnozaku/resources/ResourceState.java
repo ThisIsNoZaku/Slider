@@ -1,10 +1,7 @@
 package com.thisisnozaku.resources;
 
-import com.thisisnozaku.Subscribable;
-
 import java.beans.PropertyChangeSupport;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * The stateful properties of a resource.
@@ -14,8 +11,6 @@ public class ResourceState extends Observable {
     private double quantity;
     private double maximum;
     private double minimum;
-
-    PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     ResourceState(ResourceDefinition resource, double maximum, double minimum, double initialQuantity) {
         this.resource = resource;
